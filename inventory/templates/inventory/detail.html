@@ -3,16 +3,3 @@ Nom : {{ item }}
 GTIN : {{ item.gtin }}
 <br>
 Expiry date : {{ item.expiry_date }}
-
-<br>
-<h1>{{ item.name }}</h1>
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-<form action="{% url 'inventory:details' item.id %}" method="post">
-{% csrf_token %}
-{% for choice in item.choice_set.all %}
-
-{% endfor %}
-<input type="submit" value="Vote">
-</form>
