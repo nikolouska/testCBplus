@@ -1,11 +1,68 @@
-<h1>INVENTORY</h1>
-
-{% if latest_inventory_list %}
-    <ul>
-    {% for item in latest_inventory_list %}
-        <li><a href="{% url 'detail' item.id %}">{{ item.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No inventory are available.</p>
-{% endif %}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Inventory</title>
+<style>
+    body {
+        text-align: center;
+        background-color: white;
+    }
+    hr {
+        width: 60%;
+    }
+    h1 {
+        color : green;
+    }
+    a {
+        text-decoration: none;
+        color: green;
+    }
+    a:hover {
+        color:greenyellow;
+    }
+    .left_band {
+        background-image: url("/static/left.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 20%;
+        height: 1000px;
+        position: absolute;
+        top: 0; left: 0;
+        margin: 0; padding: 0;
+    }
+    .right_band {
+        background: url("/static/right.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 20%;
+        height: 1000px;
+        position: absolute;
+        top: 0; right: 0;
+        margin: 0; padding: 0;
+    }
+</style>
+</head>
+<body>
+    <div class="left_band">
+    </div>
+    <div class="right_band">
+    </div>
+    <h1>INVENTORY (first items will be outdated first)</h1>
+    <hr>
+    
+    {% if latest_inventory_list %}
+        {% for item in latest_inventory_list %}
+            {% if item.is_outdated %}
+            <a href="{% url 'detail' item.id %}">{{ item.name }} is outdated. <U><b>{{ item.expiry_date }}</b></U></a>
+            {% else %}
+            <a href="{% url 'detail' item.id %}">{{ item.name }} will be outdated the : <U><b>{{ item.expiry_date }}</b></U></a>
+            {% endif %}
+            <br>
+        {% endfor %}
+    {% else %}
+        <p>No inventory are available.</p>
+    {% endif %}
+    <hr>
+</body>
+</html>

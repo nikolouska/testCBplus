@@ -1,5 +1,61 @@
-Nom : {{ item }}
-<br>
-GTIN : {{ item.gtin }}
-<br>
-Expiry date : {{ item.expiry_date }}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Inventory : {{ item }}</title>
+<style>
+    body {
+        text-align: center;
+    }
+    hr {
+        width: 60%;
+    }
+    h1 {
+        color : green;
+    }
+    a {
+        text-decoration: none;
+        color: green;
+    }
+    a:hover {
+        color:greenyellow;
+    }
+    p {
+        color: green;
+    }
+    .left_band {
+        background-image: url("/static/left.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 20%;
+        height: 1000px;
+        position: absolute;
+        top: 0; left: 0;
+        margin: 0; padding: 0;
+    }
+    .right_band {
+        background: url("/static/right.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 20%;
+        height: 1000px;
+        position: absolute;
+        top: 0; right: 0;
+        margin: 0; padding: 0;
+    }
+</style>
+</head>
+<body>
+    <div class="left_band">
+    </div>
+    <div class="right_band">
+    </div>
+    <h1>{{ item }}</h1>
+    <hr>
+    <p>
+    GTIN : {{ item.gtin }}
+    <br>
+    Expiry date : {{ item.expiry_date }}
+    </p>
+    <hr>
+</body>
