@@ -16,3 +16,6 @@ class Inventory(models.Model):
 
     def get_expiry_date(self):
         return self.expiry_date
+        
+    def get_gtin(self):
+        return self.gtin

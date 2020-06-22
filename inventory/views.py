@@ -22,10 +22,15 @@ def index(request):
 def item_create(request):
     form = ItemForm(request.POST)
     if form.is_valid():
-        form.save()
+        item = form.save(commit=False)
+        for i in Inventory.objects.all():
+            if i.gtin == item.gtin:
+                i.expiry_date = item.expiry_date
+                i.save()
+                return HttpResponseRedirect(reverse('index'))
+        item.save()
         return HttpResponseRedirect(reverse('index'))
     return render(request, "inventory/form.html", {'form': form})
-        
 
 def detail(request, id):
     item = get_object_or_404(Inventory, pk=id)

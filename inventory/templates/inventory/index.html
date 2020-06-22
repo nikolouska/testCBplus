@@ -48,7 +48,7 @@
     </div>
     <div class="right_band">
     </div>
-    <h1>INVENTORY (first items will be outdated first)</h1>
+    <h1><U>INVENTORY</U></h1>
     <hr>
     
     {% if latest_inventory_list %}
@@ -56,7 +56,7 @@
             {% if item.is_outdated %}
             <a href="{% url 'detail' item.id %}">{{ item.name }} is outdated. <U><b>{{ item.expiry_date }}</b></U></a>
             {% else %}
-            <a href="{% url 'detail' item.id %}">{{ item.name }} will be outdated the : <U><b>{{ item.expiry_date }}</b></U></a>
+            <a href="{% url 'detail' item.id %}">{{ item.name }} will be outdated after : <U><b>{{ item.expiry_date }}</b></U></a>
             {% endif %}
             <br>
         {% endfor %}
