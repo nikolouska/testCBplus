@@ -1,0 +1,11 @@
+<h1>INVENTORY</h1>
+
+{% if latest_inventory_list %}
+    <ul>
+    {% for item in latest_inventory_list %}
+        <li><a href="{% url 'detail' item.id %}">{{ item.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No inventory are available.</p>
+{% endif %}
