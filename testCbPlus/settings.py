@@ -25,7 +25,7 @@ SECRET_KEY = 'y#tu!l(cpcnts_#7u0o^y!#20!s&60uz-tzb3ha-dm#e77_jm8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['inventorycbplus.herokuapp.com']
 
 
 # Application definition
