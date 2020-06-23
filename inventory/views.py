@@ -30,7 +30,7 @@ def item_create(request):
                 return HttpResponseRedirect(reverse('index'))
         item.save()
         return HttpResponseRedirect(reverse('index'))
-    return render(request, "inventory/form.html", {'form': form})
+    return render(request, "inventory/add.html", {'form': form})
 
 def delete_item(request, pk): 
     Inventory.objects.get(id=pk).delete()

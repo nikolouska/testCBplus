@@ -52,6 +52,7 @@
         </div>
         <div class="content">
         <h1>Add item to inventory</h1>
+        <p>Be careful, adding a new item with an existing GTIN will only modify the existing item GTIN</p>
         <Hr>
         <form method='POST'> {% csrf_token %}
             {{ form.as_p }}
