@@ -3,13 +3,13 @@ from django.template import loader
 
 from .forms import ItemForm
 
-# Create your views here.
-
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Inventory
+
+# Create your views here.
 
 def index(request):
     latest_inventory_list = Inventory.objects.order_by('expiry_date')
@@ -31,6 +31,10 @@ def item_create(request):
         item.save()
         return HttpResponseRedirect(reverse('index'))
     return render(request, "inventory/form.html", {'form': form})
+
+def delete_item(request, pk): 
+    Inventory.objects.get(id=pk).delete()
+    return HttpResponseRedirect(reverse('index'))
 
 def detail(request, id):
     item = get_object_or_404(Inventory, pk=id)
