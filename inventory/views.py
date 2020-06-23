@@ -36,6 +36,27 @@ def delete_item(request, pk):
     Inventory.objects.get(id=pk).delete()
     return HttpResponseRedirect(reverse('index'))
 
+def modify_item(request, pk):
+    item = Inventory.objects.get(id=pk)
+    form = ItemForm(request.POST)
+    if form.is_valid():
+        itemF = form.save(commit=False)
+        item.name = itemF.name
+        item.expiry_date = itemF.expiry_date
+        for i in Inventory.objects.all():
+            if i.gtin == itemF.gtin:
+                item.save()
+                return HttpResponseRedirect(reverse('index'))
+        item.gtin = itemF.gtin
+        item.save()
+        return HttpResponseRedirect(reverse('index'))
+    context = {
+        'form': form,
+        'item': item
+    }
+    return render(request, "inventory/modify.html", context)
+
+
 def detail(request, id):
     item = get_object_or_404(Inventory, pk=id)
     return render(request, 'inventory/detail.html', {'item': item})
